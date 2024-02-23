@@ -1,0 +1,14 @@
+﻿<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="House" asp-action="All">All Houses</a>
+    </li>
+    @if (this.User?.Identity?.IsAuthenticated ?? false)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="House" asp-action="Mine">My Houses</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="House" asp-action="Index">Add House</a>
+        </li>
+    }
+</ul>
