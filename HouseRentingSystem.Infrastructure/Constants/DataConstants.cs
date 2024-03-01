@@ -22,6 +22,6 @@
 
         public const int AgentPhoneMaxLength = 15;
 
-        public const int HAgentPhoneMinLength = 7;
+        public const int AgentPhoneMinLength = 7;
     }
 }
