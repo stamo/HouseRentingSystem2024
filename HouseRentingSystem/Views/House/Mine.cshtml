@@ -1,7 +1,19 @@
-﻿@model AllHousesQueryModel
+﻿@model IEnumerable<HouseServiceModel>
 @{
     ViewData["Title"] = "My Houses";
 }
 
 <h2 class="text-center">@ViewData["Title"]</h2>
 <hr />
+
+@if (Model.Any() == false)
+{
+    <h3 class="text-center">You have no houses yet!</h3>
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <partial name="_HousePartial" model="@item" />
+    }
+</div>
