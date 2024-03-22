@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<HouseIndexServiceModel>
+@inject IAgentService agentService
 
 @{
     ViewData["Title"] = "Home Page";
@@ -15,7 +16,7 @@
         </p>
         <hr class="my-4">
         <p class="lead">
-            @if (User?.Identity?.IsAuthenticated ?? false)
+            @if (User?.Identity?.IsAuthenticated ?? false && await agentService.ExistsByIdAsync(User.Id()))
             {
                 <a asp-controller="House" asp-action="Add" class="btn btn-primary btn-lg" role="button">Add House</a>
             }
