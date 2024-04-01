@@ -23,5 +23,13 @@
         public const int AgentPhoneMaxLength = 15;
 
         public const int AgentPhoneMinLength = 7;
+
+        public const int UserFirstNameMaxLength = 12;
+
+        public const int UserFirstNameMinLength = 1;
+
+        public const int UserLastNameMaxLength = 15;
+
+        public const int UserLastNameMinLength = 3;
     }
 }

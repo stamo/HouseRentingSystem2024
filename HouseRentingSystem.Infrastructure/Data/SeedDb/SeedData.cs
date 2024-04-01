@@ -5,9 +5,9 @@ namespace HouseRentingSystem.Infrastructure.Data.SeedDb
 {
     internal class SeedData
     {
-        public IdentityUser AgentUser { get; set; }
+        public ApplicationUser AgentUser { get; set; }
 
-        public IdentityUser GuestUser { get; set; }
+        public ApplicationUser GuestUser { get; set; }
 
         public Agent Agent { get; set; }
 
@@ -33,9 +33,9 @@ namespace HouseRentingSystem.Infrastructure.Data.SeedDb
 
         private void SeedUsers()
         {
-            var hasher = new PasswordHasher<IdentityUser>();
+            var hasher = new PasswordHasher<ApplicationUser>();
 
-            AgentUser = new IdentityUser()
+            AgentUser = new ApplicationUser()
             {
                 Id = "dea12856-c198-4129-b3f3-b893d8395082",
                 UserName = "agent@mail.com",
@@ -47,7 +47,7 @@ namespace HouseRentingSystem.Infrastructure.Data.SeedDb
             AgentUser.PasswordHash =
                  hasher.HashPassword(AgentUser, "agent123");
 
-            GuestUser = new IdentityUser()
+            GuestUser = new ApplicationUser()
             {
                 Id = "6d5800ce-d726-4fc8-83d9-d6b3ac1f591e",
                 UserName = "guest@mail.com",
