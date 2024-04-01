@@ -3,11 +3,6 @@ using HouseRentingSystem.Core.Models.Statistics;
 using HouseRentingSystem.Infrastructure.Data.Common;
 using HouseRentingSystem.Infrastructure.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HouseRentingSystem.Core.Services
 {
@@ -23,6 +18,7 @@ namespace HouseRentingSystem.Core.Services
         public async Task<StatisticServiseModel> TotalAsync()
         {
             int totalHouses = await repository.AllReadOnly<House>()
+                .Where(h => h.IsApproved)
                 .CountAsync();
 
             int totalRents = await repository.AllReadOnly<House>()
