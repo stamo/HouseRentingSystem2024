@@ -28,7 +28,8 @@
             <div class="form-inline">
                 @if (this.User.Identity.IsAuthenticated)
                 {
-                    if (await houseService.HasAgentWithIdAsync(Model.Id, User.Id()))
+                    if (await houseService.HasAgentWithIdAsync(Model.Id, User.Id()) 
+                        || User.IsAdmin())
                     {
                         <a class="btn btn-warning" asp-controller="House" asp-action="Edit"
                            asp-route-id="@Model.Id">Edit</a>
@@ -36,7 +37,7 @@
                            asp-route-id="@Model.Id">Delete</a>
                     }
 
-                    @if (!Model.IsRented && (await agentService.ExistsByIdAsync(User.Id())) == false)
+                    @if (!Model.IsRented && ((await agentService.ExistsByIdAsync(User.Id())) == false || User.IsAdmin()))
                     {
                         <form class="ml-2" asp-controller="House"
                               asp-action="Rent" asp-route-id="@Model.Id" method="post">
