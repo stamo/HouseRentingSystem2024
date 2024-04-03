@@ -18,6 +18,7 @@ namespace HouseRentingSystem.Infrastructure.Data
             builder.ApplyConfiguration(new AgentConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new HouseConfiguration());
+            builder.ApplyConfiguration(new UserClaimsConfiguration());
 
             base.OnModelCreating(builder);
         }
