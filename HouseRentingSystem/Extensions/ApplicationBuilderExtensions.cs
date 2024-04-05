@@ -1,6 +1,6 @@
 ﻿using HouseRentingSystem.Infrastructure.Data.Models;
 using Microsoft.AspNetCore.Identity;
-using static HouseRentingSystem.Core.Constants.RoleConstants;
+using static HouseRentingSystem.Core.Constants.AdministratorConstants;
 
 namespace Microsoft.AspNetCore.Builder
 {

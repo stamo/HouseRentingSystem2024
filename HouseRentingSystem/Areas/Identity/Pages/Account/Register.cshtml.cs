@@ -13,7 +13,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using static HouseRentingSystem.Infrastructure.Constants.DataConstants;
-using static HouseRentingSystem.Core.Constants.CustomClaims;
+using static HouseRentingSystem.Infrastructure.Constants.CustomClaims;
 
 namespace HouseRentingSystem.Areas.Identity.Pages.Account
 {

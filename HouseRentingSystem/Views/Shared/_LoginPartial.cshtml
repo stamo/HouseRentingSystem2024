@@ -9,7 +9,7 @@
 
     if (SignInManager.IsSignedIn(User))
     {
-        userName = User.FindFirstValue(HouseRentingSystem.Core.Constants.CustomClaims.UserFullNameClaim) ?? string.Empty;
+        userName = User.FindFirstValue(HouseRentingSystem.Infrastructure.Constants.CustomClaims.UserFullNameClaim) ?? string.Empty;
     }
 }
 
