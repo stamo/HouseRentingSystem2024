@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@inject IOptions<RequestLocalizationOptions> LocalizationOptions
+
+@{
+    Dictionary<string, string> cultureItems = new Dictionary<string, string>();
+
+    if (LocalizationOptions?.Value?.SupportedUICultures != null)
+    {
+        cultureItems = LocalizationOptions.Value.SupportedUICultures
+        .ToDictionary(k => k.Name, v => v.DisplayName);
+    }
+
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+}
+
+<ul class="nav justify-content-end">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            Език
+        </a>
+        <div class="dropdown-menu">
+            @foreach (var key in cultureItems.Keys)
+            {
+                <a class="dropdown-item" asp-controller="Home" asp-action="SetLanguage" asp-route-culture="@key" asp-route-returnUrl="@returnUrl">@cultureItems[key]</a>
+            }
+        </div>
+
+    </li>
+</ul>

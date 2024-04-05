@@ -1,7 +1,8 @@
 ﻿@model AllHousesQueryModel
+@inject IViewLocalizer Localizer
 
 @{
-    ViewBag.Title = "All Houses";
+    ViewBag.Title = Localizer["Title"];
 }
 
 <h2 class="text-center">@ViewBag.Title</h2>
