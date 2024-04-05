@@ -6,6 +6,7 @@ using static HouseRentingSystem.Infrastructure.Constants.DataConstants;
 
 namespace HouseRentingSystem.Infrastructure.Data.Models
 {
+    [Index(nameof(PhoneNumber), IsUnique = true)]
     [Comment("House Agent")]
     public class Agent
     {
@@ -23,7 +24,7 @@ namespace HouseRentingSystem.Infrastructure.Data.Models
         public string UserId { get; set; } = string.Empty;
 
         [ForeignKey(nameof(UserId))]
-        public IdentityUser User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
 
         public List<House> Houses { get; set; } = new List<House>();
     }

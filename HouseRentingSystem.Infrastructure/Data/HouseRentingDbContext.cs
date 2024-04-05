@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HouseRentingSystem.Infrastructure.Data
 {
-    public class HouseRentingDbContext : IdentityDbContext
+    public class HouseRentingDbContext : IdentityDbContext<ApplicationUser>
     {
         public HouseRentingDbContext(DbContextOptions<HouseRentingDbContext> options)
             : base(options)
@@ -18,6 +18,7 @@ namespace HouseRentingSystem.Infrastructure.Data
             builder.ApplyConfiguration(new AgentConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new HouseConfiguration());
+            builder.ApplyConfiguration(new UserClaimsConfiguration());
 
             base.OnModelCreating(builder);
         }

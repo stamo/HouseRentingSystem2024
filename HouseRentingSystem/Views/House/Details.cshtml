@@ -1,7 +1,67 @@
-﻿@model HouseDetailsViewModel
+﻿@model HouseDetailsServiceModel
+@inject IAgentService agentService
+@inject IHouseService houseService
+
 @{
-    ViewData["Title"] = "House Details";
+    ViewBag.Title = "House Details";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
+<h2 class="text-center">@ViewBag.Title</h2>
 <hr />
+
+<div class="container" style="display:inline">
+    <div class="row">
+        <div class="col-4">
+            <img class="card-img-top" style="width: 20rem;"
+                 src="@Model.ImageUrl" alt="House Image">
+        </div>
+        <div class="card col-8 border-0">
+            <p style="font-size:25px;"><u>@Model.Title</u></p>
+            <p>Located in: <b>@Model.Address</b></p>
+            <p>
+                Price Per Month:
+                <b>@String.Format("{0:f2}", Model.PricePerMonth) BGN</b>
+            </p>
+            <p>@Model.Description</p>
+            <p>Category: <b>@Model.Category</b></p>
+            <p><i>(@(Model.IsRented ? "Rented" : "Not Rented"))</i></p>
+            <div class="form-inline">
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    if (await houseService.HasAgentWithIdAsync(Model.Id, User.Id()) 
+                        || User.IsAdmin())
+                    {
+                        <a class="btn btn-warning" asp-controller="House" asp-action="Edit"
+                           asp-route-id="@Model.Id">Edit</a>
+                        <a class="ml-2 btn btn-danger" asp-controller="House" asp-action="Delete"
+                           asp-route-id="@Model.Id">Delete</a>
+                    }
+
+                    @if (!Model.IsRented && ((await agentService.ExistsByIdAsync(User.Id())) == false || User.IsAdmin()))
+                    {
+                        <form class="ml-2" asp-controller="House"
+                              asp-action="Rent" asp-route-id="@Model.Id" method="post">
+                            <input class="btn btn-primary" type="submit" value="Rent" />
+                        </form>
+                    }
+                    else if (await houseService.IsRentedByIUserWithIdAsync(Model.Id, User.Id()))
+                    {
+                        <form class="ml-2" asp-controller="House" asp-action="Leave"
+                              asp-route-id="@Model.Id" method="post">
+                            <input class="btn btn-primary" type="submit" value="Leave" />
+                        </form>
+                    }
+                }
+            </div>
+            <p></p>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Agent Info</h5>
+                    <p class="card-text">Full Name:  @Model.Agent.FullName</p>
+                    <p class="card-text">Email:  @Model.Agent.Email</p>
+                    <p class="card-text">Phone Number: @Model.Agent.PhoneNumber</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

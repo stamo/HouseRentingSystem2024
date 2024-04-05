@@ -16,12 +16,20 @@
 
         public const int HouseDescriptionMinLength = 50;
 
-        public const string HouseRentingPriceMinimum = "0.00";
+        public const string HouseRentingPriceMinimum = "0";
 
-        public const string HouseRentingPriceMaximum = "2000.00";
+        public const string HouseRentingPriceMaximum = "2000";
 
         public const int AgentPhoneMaxLength = 15;
 
-        public const int HAgentPhoneMinLength = 7;
+        public const int AgentPhoneMinLength = 7;
+
+        public const int UserFirstNameMaxLength = 12;
+
+        public const int UserFirstNameMinLength = 1;
+
+        public const int UserLastNameMaxLength = 15;
+
+        public const int UserLastNameMinLength = 3;
     }
 }
